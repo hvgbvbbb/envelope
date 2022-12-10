@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+    <hear>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <title>Envelope</title>
+    </hear>
+    
+    <style type="text/css">
+        @keyframes showOpenEnvelopeButton {
+            from { width: 0px; border-width: 0px; border-radius: 0px; margin-top 0px; }
+            to { width: 50%; border-width: 2px; border-radius: 15px; margin-top: 100px; }
+        }
+        @keyframes showMainText {
+            from { color: #ffffff; }
+            to { color: #000000; }
+        }
+        @keyframes showEnvelopeDiv {
+            0% { box-shadow: 0px 0px 0px grey; margin-top: 0px; margin-bottom: 0px; border: 0px solid #000000; border-radius: 0px; }
+            100% { box-shadow: 8px 8px 5px grey; margin-top: 50px; margin-bottom: 50px; border: 2px solid #000000; border-radius: 25px; }
+        }
+        @keyframes showHr{
+            0% {width: 0%; height: 2px; }
+            100% {width: 100%; height: 2px; }
+        }
+        
+        body {
+            background-color: #ffffff;
+            font-family: Sans-Serif;
+        }
+        #mainTextDiv {
+            text-align: center;
+            margin-top: 100px;
+        }
+        .mainText {
+            color: #ffffff;
+            
+            animation-name: showMainText;
+            animation-duration: 2s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+        }
+        #openEnvelopeButtonDiv {
+            text-align: center;
+        }
+        #openEnvelopeButton {
+            width: 0%;
+            height: 50px;
+            background-color: #ffffff;
+            border-radius: 0px;
+            border-color: #000000;
+            border-width: 0px;
+            outline: none;
+            
+            animation-name: showOpenEnvelopeButton;
+            animation-duration: 1s;
+            animation-delay: 3s;
+            animation-fill-mode: forwards;
+        }
+        #envelopeContentsDiv {
+            display: none;
+            border-color: #000000;
+            background-image: radial-gradient(circle at bottom left, #ff7dc8, #ff8cb0, #ff0073);
+            margin: 0px 15px 0px 15px;
+            padding: 20px 15px 20px 15px;
+            
+            animation-name: showEnvelopeDiv;
+            animation-duration: 2s;
+            animation-fill-mode: forwards;
+        }
+        .envelopeContentsHr {
+            border: 0px;
+            background-color: #ffffff;
+            
+            animation-name: showHr;
+            animation-duration: 2s;
+            animation-delay: 1s;
+            animation-fill-mode: forwards;
+        }
+        #toName {
+            text-align: left;
+        }
+        #nr {
+            font-size: 14px;
+        }
+        #endTxt {
+            font-size: 10px;
+        }
+        #writer {
+            font-size: 14px;
+            text-align: right;
+        }
+    </style>
+    
+    <body>
+        
+        <div id="mainTextDiv">
+            <h4 class="mainText">这是一封专门写给你的信</h4>
+            <h4 class="mainText">他可能会有些单调</h4>
+            <h4 class="mainText">但是，我希望你能花点时间认真看完</h4>
+        </div>
+        <div id="openEnvelopeButtonDiv">
+            <button id="openEnvelopeButton"></button>
+        </div>
+        <div id="envelopeContentsDiv">
+            <hr class="envelopeContentsHr"/>
+            <h4 id="toName"></h4>
+            <p id="nr"></p>
+            <p id="endTxt"></p>
+            <p id="writer"></p>
+            <hr class="envelopeContentsHr"/>
+        </div>
+        
+        <script type="text/javascript">
+            let mainTextDiv = document.getElementById("mainTextDiv");
+            let openEnvelopeButtonDiv = document.getElementById("openEnvelopeButtonDiv");
+            let openEnvelopeButton = document.getElementById("openEnvelopeButton");
+            let envelopeContentsDiv = document.getElementById("envelopeContentsDiv");
+            let toName = document.getElementById("toName");
+            let nr = document.getElementById("nr");
+            let writer = document.getElementById("writer");
+            let endTxt = document.getElementById("endTxt");
+            
+            let writed = false;
+            
+            const dl = "\f\f\f\f\f\f";
+            const 收件人 = "颜铃汶，";
+            const 作者 = "伞\n2022-12-10";
+            const 开头诗 = ""
+            const 结尾诗 = "永夜抛人何处去？绝来音。香阁掩，眉敛，月将沉。\n争忍不相寻？怨孤衾。换我心，为你心，始知相忆深。";
+            const 内容 = dl + "当我看到你第一眼的瞬间，我就有一种很" +
+                        "特别的感觉，这种感觉我不知道该如何形容，" +
+                        "很美好，很治愈。" +
+                        "后来，我无时无刻不在想你，我很想找你聊天，但却又不知道该从哪里开始，" +
+                        "和你聊天，总是有一种莫名的欢喜，不浓烈，是恰到好处的恬静。" +
+                        "我爱你是真的，对你的感觉也是真的，我巴不得每天给你发很多信息，我想慢慢地了解你。" + 
+                        "你不喜欢的我都可以改，可你要知道，只有你才能让我这样。" +
+                        "就像是一种毒品，让我怡然自得，也让我无法自拔。\n" +
+                        dl + "你像星星一样闪耀，你点亮了我的心，" +
+                        "请若无其事地微笑，让我在想你的时候，可以记起你，" +
+                        "让我能够在脑海中，描绘出你的脸庞。\n" +
+                        dl + "当我遇见你之后，我突然好想有一个人能陪在我身边，" +
+                        "与我一起去经历这个世界的壮阔与伟大。" +
+                        "你也许不知道，我多想和你一起生活，我不仅想让你介入我的生活，" + 
+                        "还想你一直在我的生活中。" +
+                        "说不出对你有多喜欢，只知道喜欢你的程度，是其余所有喜爱的事物" +
+                        "加起来都无法企及的，你是第一，且遥遇领先。" +
+                        "未来很长，但不是遥遥无期。\n" +
+                        dl + "你是我最简单的快乐，认识你是我这辈子最美好的事，我爱你是我最想对你说的。" +
+                        "我很想和你有一个很长很长的未来。我真的特别希望走到最后的是我俩。" +
+                        "我们慢慢来吧,我不想和你潦草收场。\n" +
+                        dl + "你要是愿意，我就永远爱你，你要是不愿意，我就永远相思。\n" +
+                        dl + "这一封告白信，送给我最亲爱的你。"
+            
+            setTimeout(function() {
+                openEnvelopeButton.innerText = "点击查看";
+                openEnvelopeButton.onclick = function() { 
+                    openEnvelopeButtonDiv.style.display = "none";
+                    envelopeContentsDiv.style.display = "block";
+                    write(toName, 收件人, 300, 3000);
+                    write(nr, 内容, 300, 4000 + 收件人.length * 300); 
+                    write(endTxt, 结尾诗, 300, 5000 + (收件人.length * 300) + (内容.length * 300));
+                    write(writer, 作者, 500, 6000 + (收件人.length * 300) + (内容.length * 300) + (结尾诗.length * 300));
+                }
+            }, 4000);
+            
+            function write(documentId, contents, speed, waitTimes){
+                let i = 0;
+                writed = true;
+                mainTextDiv.style.display = "none";
+                openEnvelopeButtonDiv.style.display = "none";
+                
+                const cl = contents.length;
+                setTimeout(()=>{
+                    let ITV = setInterval(()=>{
+                        if(i == cl){
+                            documentId.innerText = contents.substr(0, i);
+                            i = 0;
+                            clearInterval(ITV);
+                        } else {
+                            documentId.innerText = contents.substr(0, i) + "▌";
+                            i = i + 1;
+                        }
+                    }, speed);
+                }, waitTimes);
+            }
+        </script>
+    </body>
+</html>
